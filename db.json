@@ -1,19 +1,102 @@
 {
-    "superheroes": [
-        {
-            "id": 1,
-            "name": "Batman123",
-            "alterEgo": "Bruce Wayne"
-        },
-        {
-            "id": 2,
-            "name": "Superman",
-            "alterEgo": "Clark Kent"
-        },
-        {
-            "id": 3,
-            "name": "Wonder Woman",
-            "alterEgo": "Princess Diana"
-        }
-    ]
+  "superheroes": [
+    {
+      "id": 1,
+      "name": "Batman123",
+      "alterEgo": "Bruce Wayne"
+    },
+    {
+      "id": 2,
+      "name": "Wonder Woman",
+      "alterEgo": "Princess Diana"
+    },
+    {
+      "name": "Superman",
+      "alterEgo": 1325456,
+      "id": 3
+    },
+    {
+      "name": "Princess1",
+      "alterEgo": "Diana",
+      "id": 4
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "name": "Rashmi"
+    },
+    {
+      "id": 2,
+      "name": "Snehal"
+    },
+    {
+      "id": 3,
+      "name": "Mithil"
+    },
+    {
+      "id": 4,
+      "name": "Kayu"
+    }
+  ],
+  "users": [
+    {
+      "id": "jb@gmail.com",
+      "channelId": "JB"
+    },
+    {
+      "id": "xyz@gmail.com",
+      "channelId": "XYZ"
+    }
+  ],
+  "channels": [
+    {
+      "id": "JB",
+      "courses": [
+        "React",
+        "Angular"
+      ]
+    },
+    {
+      "id": "XYZ",
+      "courses": [
+        "Python",
+        "PHP"
+      ]
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "label": "Red"
+    },
+    {
+      "id": 2,
+      "label": "Green"
+    },
+    {
+      "id": 3,
+      "label": "Blue"
+    },
+    {
+      "id": 4,
+      "label": "Pink"
+    },
+    {
+      "id": 5,
+      "label": "Yellow"
+    },
+    {
+      "id": 6,
+      "label": "Mustard"
+    },
+    {
+      "id": 7,
+      "label": "Black"
+    },
+    {
+      "id": 8,
+      "label": "Gray"
+    }
+  ]
 }

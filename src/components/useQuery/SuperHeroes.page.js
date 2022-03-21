@@ -7,7 +7,7 @@ const SuperHeroesPage = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:4000/superheroes")
+        axios.get(`${process.env.REACT_APP_BASE_URL}/superheroes`)
             .then(res => {
                 setData(res.data)
                 setIsLoading(false)

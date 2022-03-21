@@ -1,0 +1,44 @@
+
+.ml-15{
+    margin-left:15px;
+}
+
+.ml-30{
+    margin-left:30px;
+}
+.heroTable{
+    margin:15px;
+    tr,td{
+        border: 1px solid black;
+    }
+    td{
+        padding:5px 15px;
+    }
+}
+
+.btn{
+    width:120px;
+    height:30px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.form{
+    input{
+        margin: 10px;
+        width:300px;
+        height: 20px;
+    }
+}
+
+.update-table{
+    tr,td{
+border: 1px solid black;
+padding:8px 30px;
+    }
+    button{
+        width: 100px;
+        height:25px;
+        border-radius: 7px;
+    }
+}
