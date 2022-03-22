@@ -15,6 +15,19 @@ import InfiniteQuery from './components/useQuery/InfiniteQuery';
 
 const queryClient = new QueryClient();
 
+const link = [
+  { path: "/", name: "Home", component: <HomePage /> },
+  { path: "/super-heroes", name: "Traditional Super Heroes", component: <SuperHeroesPage /> },
+  { path: "/rq-super-heroes", name: "RQ Super Heroes", component: <RQSuperHeroesPage /> },
+  { path: "/rq-super-heroes/:heroId", name: "", component: <SuperHeroDetails /> },
+  { path: "/onclick-fetch", name: "OnClick Fetch", component: <ExampleRefetch /> },
+  { path: "/parallel-queries", name: "", component: <ParallelQueries /> },
+  { path: "/dynamic-parallel-queries", name: "Dynamic parallel ", component: <DynamicParallelQueries heroIds={[1, 3, 6]} /> },
+  { path: "/dependent-query", name: "", component: <DependentQueries email="Sincere@april.biz" /> },
+  { path: "/paginated-query", name: "Paginated query", component: <PaginatedQueries /> },
+  { path: "/infinite-query", name: "Infinite query", component: <InfiniteQuery /> },
+]
+
 function App() {
   return (
     <QueryClientProvider client={queryClient} > {/* with a QueryClient instance we can access the hooks provided by the react-query library*/}
@@ -22,51 +35,24 @@ function App() {
         <div>
           <nav>
             <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/super-heroes">Traditional Super Heroes</Link>
-              </li>
-              <li>
-                <Link to="/rq-super-heroes">RQ Super Heroes</Link>
-              </li>
-              <li>
-                <Link to="/onclick-fetch">Fetch onClick</Link>
-              </li>
+              {
+                link.map((value) => {
+                  return (<li>
+                    <Link to={value?.path}>{value?.name}</Link>
+                  </li>
+                  )
+                })
+              }
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/super-heroes">
-              <SuperHeroesPage />
-            </Route>
-            <Route exact path="/rq-super-heroes">
-              <RQSuperHeroesPage />
-            </Route>
-            <Route exact path="/rq-super-heroes/:heroId">
-              <SuperHeroDetails />
-            </Route>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/onclick-fetch">
-              <ExampleRefetch />
-            </Route>
-            <Route exact path="/parallel-queries">
-              <ParallelQueries />
-            </Route>
-            <Route exact path="/dynamic-parallel-queries">
-              <DynamicParallelQueries heroIds={[1, 3]} />
-            </Route>
-            <Route exact path="/dependent-query">
-              <DependentQueries email="jb@gmail.com" />
-            </Route>
-            <Route exact path="/paginated-query">
-              <PaginatedQueries />
-            </Route>
-            <Route exact path="/infinite-query">
-              <InfiniteQuery />
-            </Route>
+            {
+              link.map((value) => {
+                return (<Route exact path={value?.path}>
+                  {value?.component}
+                </Route>)
+              })
+            }
           </Switch>
         </div>
       </Router>

@@ -5,8 +5,7 @@ import { CustomInitialQuery, useQueryById } from '../../shared/CustomUseQuery'
 
 const SuperHeroDetails = () => {
     const { heroId } = useParams();
-    const link = `${process.env.REACT_APP_BASE_URL}/superheroes/${heroId}`;
-    console.log('heroId :>> ', heroId);
+    const link = `${process.env.REACT_APP_BASE_URL}/${heroId}`;
     // It will load the new data on every click.
     // const { isLoading, data, isError, error } = useQueryById(link, heroId)
 
@@ -20,6 +19,8 @@ const SuperHeroDetails = () => {
         return <h3>{error.message}</h3>
     }
 
+    const value = data?.data;
+
     return (
         <div>
             <h2>Super Hero Details</h2>
@@ -27,11 +28,23 @@ const SuperHeroDetails = () => {
                 <tbody>
                     <tr>
                         <td><b>Name : </b></td>
-                        <td>{data?.data?.name}</td>
+                        <td>{value?.name}</td>
                     </tr>
                     <tr>
-                        <td><b>AlterEgo : </b></td>
-                        <td>{data?.data?.alterEgo}</td>
+                        <td><b>Email : </b></td>
+                        <td>{value?.email}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Phone : </b></td>
+                        <td>{value?.phone}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Company : </b></td>
+                        <td>{value?.company?.name}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Address : </b></td>
+                        <td>{value?.address?.suite}, {value?.address?.street}, {value?.address?.city}. </td>
                     </tr>
                 </tbody>
             </table>

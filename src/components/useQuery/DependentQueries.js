@@ -1,25 +1,24 @@
-import axios from "axios"
 import { useQuery } from "react-query"
 import { request } from "../../utils/axios-utils"
 
 const fetchUserByEmail = (email) => {
     // return axios.get(`${process.env.REACT_APP_BASE_URL}/users/${email}`)
-    return request({ url: `/users/${email}` })
+    return request({ url: `/${email}` })
 
 }
 
 const fetchUserByChannel = (channelId) => {
     // return axios.get(`${process.env.REACT_APP_BASE_URL}/channels/${channelId}`)
-    return request({ url: `/channels/${channelId}` })
+    return request({ url: `/${channelId}` })
 }
 
 
 const DependentQueries = ({ email }) => {
     // Fetch a data based on emailId
-    const { data: user } = useQuery(["user", email], () => fetchUserByEmail(email))
+    const { data: user } = useQuery(["users", email], () => fetchUserByEmail(email))
     const channelId = user?.data?.channelId
     // Fetch a query based on previous query result.
-    const { data: channel } = useQuery(["channel", channelId], () => fetchUserByChannel(channelId),
+    const { data: channel } = useQuery(["channels", channelId], () => fetchUserByChannel(channelId),
         { enabled: !!channelId, })
     return (
         <div>

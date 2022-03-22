@@ -4,7 +4,7 @@ import { request } from '../../utils/axios-utils';
 
 const fetchSuperHeroes = (pageLimit, pageNo) => {
     // return axios.get(`${process.env.REACT_APP_BASE_URL}/colors?_limit=${pageLimit}&_page=${pageNo}`)
-    return request({ url: `/colors?_limit=${pageLimit}&_page=${pageNo}` })
+    return request({ url: `?_limit=${pageLimit}&_page=${pageNo}` })
 }
 
 // set pagination to fetch query result pagination-wise.
@@ -23,13 +23,13 @@ const PaginatedQueries = () => {
     if (isError) {
         <h2>{error.message}</h2>
     }
-    console.log('parseInt(data?.data.length)', parseInt(data?.data.length))
+
     return (
         <div>
             <h2>Paginated Queries</h2>
             <div className="ml-30">
                 {data?.data.map(val => {
-                    return (<h3>{val?.id} - {val?.label}</h3>)
+                    return (<h3>{val?.id} - {val?.username}</h3>)
                 })}
             </div>
             <div className="ml-30">

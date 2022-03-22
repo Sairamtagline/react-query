@@ -8,10 +8,10 @@
 }
 .heroTable{
     margin:15px;
-    tr,td{
+    tr,td,th{
         border: 1px solid black;
     }
-    td{
+    td,th{
         padding:5px 15px;
     }
 }
@@ -32,10 +32,19 @@
 }
 
 .update-table{
-    tr,td{
-border: 1px solid black;
-padding:8px 30px;
+    tr,td,th{
+        border: 1px solid black;
+        padding:8px 30px;
+        min-width: 200px;
     }
+    td:nth-of-type(1) {
+    min-width:70px;
+    text-align: center;
+      }
+      th:nth-of-type(1){
+        min-width:70px;
+        text-align: center;
+      }
     button{
         width: 100px;
         height:25px;

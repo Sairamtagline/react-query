@@ -7,7 +7,7 @@ const fetchSuperHeroes = (link) => {
 
 const CustomUseQuery = (link, arg) => {
     return useQuery(
-        'super-heroes', //first one is a string to cache and tracks the query result.
+        'users', //first one is a string to cache and tracks the query result.
         () => fetchSuperHeroes(link), //second argument is the function we define to make HTTP requests.
         arg
         // {   //3rd argument is optional.Please read at the bottom of the page to understand below configurations.
@@ -25,6 +25,7 @@ const CustomUseQuery = (link, arg) => {
         //     // },
         //     // onSuccess,
         //     // onError,
+        //     // refetchOnWindowFocus: false,
         //     // select: dataTransformation
         // }
     )
@@ -36,7 +37,7 @@ export default CustomUseQuery
 // Custom useQuery: get results by id 
 export const useQueryById = (link, id) => {
     return useQuery(
-        ['super-hero', id],
+        ['users', id],
         () => fetchSuperHeroes(link),
     )
     // pass a link in fetchSuperHeroes func or if we wants to pass an id then 
@@ -49,9 +50,9 @@ export const useQueryById = (link, id) => {
 // query fetch first time and load the data. After that it uses initial data. So if we need a same data then it doesn't load on every click.
 export const CustomInitialQuery = (link, heroId) => {
     const queryClient = useQueryClient();
-    return useQuery(['super-heroes', heroId], () => fetchSuperHeroes(link), {
+    return useQuery(['users', heroId], () => fetchSuperHeroes(link), {
         initialData: () => {
-            const hero = queryClient.getQueryData('super-heroes')?.data?.find(hero => hero?.id === parseInt(heroId));
+            const hero = queryClient.getQueryData('users')?.data?.find(hero => hero?.id === parseInt(heroId));
             if (hero) {
                 return { data: hero }
             } else {
@@ -67,7 +68,7 @@ export const CustomInitialQuery = (link, heroId) => {
     1> cacheTime: 5000
         - used for set caching time (default caching time is 5 min).
     2> staleTime: 10000
-        - used for reduce network request for the same for requested time (default staleTime is 0). 
+        - used for reduce network request for the same for requested time (default staleTime is 0). used for delay request time. 
     3> refetchOnMount: true
         -> 3 options:
             - true: refetch request if in stale status. 
@@ -94,5 +95,13 @@ export const CustomInitialQuery = (link, heroId) => {
         - It will perform when fetching encounters an error. 
     11> select : 
         - It will help you to set response data as per your need.
-
+    12> refetchOnWindowFocus: 
+        - It will refetch query automatically when window focused is value is true.
+    13> retry:      
+        - retry: false -> will disable retries.
+        - retry: 6 -> will retry failing requests 6 times before showing the final error thrown by the function.
+        - retry: true -> will infinitely retry failing requests.
+        - retry = (failureCount, error) => ... -> allows for custom logic based on why the request failed.
+    14> retryDelay:
+        - retryDelay: 1000 -> it will delay retry calling.
 */

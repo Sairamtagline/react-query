@@ -7,7 +7,7 @@ const SuperHeroesPage = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/superheroes`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}`)
             .then(res => {
                 setData(res.data)
                 setIsLoading(false)
@@ -30,11 +30,13 @@ const SuperHeroesPage = () => {
         <>
             <h2>Super Heroes Page</h2>
             <div className="ml-15">
+                <ul>
                 {
                     data && data.length && data.map((hero) => {
-                        return <div key={hero.name}>{hero.name}</div>
+                        return <li key={hero.name}>{hero.name}</li>
                     })
                 }
+                </ul>
             </div>
         </>
     )

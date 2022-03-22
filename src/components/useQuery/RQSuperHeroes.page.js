@@ -12,7 +12,8 @@ import CustomUseQuery from '../../shared/CustomUseQuery';
 
 const RQSuperHeroesPage = () => {
     // const [intervalTime, setIntervalTime] = useState(3000);
-    const [formData, setFormData] = useState({ name: "", alterEgo: "" });
+    const initialData = { name: "", email: "" };
+    const [formData, setFormData] = useState(initialData);
     const [updateIndex, setUpdateIndex] = useState();
     const onSuccess = (data) => {
         console.log('After success', data);
@@ -24,7 +25,7 @@ const RQSuperHeroesPage = () => {
 
     // useQuery hook takes two arguments.
     const args = { onSuccess, onError }
-    const { isLoading, data, isError, error, refetch } = CustomUseQuery(`${process.env.REACT_APP_BASE_URL}/superheroes`, args)
+    const { isLoading, data, isError, error, refetch } = CustomUseQuery(`${process.env.REACT_APP_BASE_URL}`, args)
     const { mutate: addHero } = AddSuperHeroData();
     const { mutate: updateHero } = UpdateSuperHeroes();
     const { mutate: deleteHero } = DeleteSuperHeroes();
@@ -44,16 +45,18 @@ const RQSuperHeroesPage = () => {
     // Perform add data using useMutation. 
     const handleSubmit = () => {
         addHero(formData)
+        setFormData(initialData)
     }
 
     const handleEdit = (index, id) => {
         setUpdateIndex(id)
-        let tempData = { name: data?.data?.[index].name, alterEgo: data?.data?.[index].alterEgo }
+        let tempData = { name: data?.data?.[index].name, email: data?.data?.[index].email }
         setFormData(tempData);
     }
 
     const updateClick = () => {
         updateHero({ id: updateIndex, formData })
+        setFormData(initialData)
     }
 
     const handleDelete = (index) => {
@@ -61,7 +64,7 @@ const RQSuperHeroesPage = () => {
     }
 
     const handleCancel = () => {
-        setFormData({ name: "", alterEgo: "" })
+        setFormData(initialData)
         setUpdateIndex()
     }
 
@@ -70,7 +73,7 @@ const RQSuperHeroesPage = () => {
             <h2>RQ Super Heroes Page</h2>
             <div className="ml-15 form">
                 <b> Name : </b><input type="text" onChange={handleChange} name="name" value={formData.name} /><br />
-                <b>alterEgo : </b><input type="text" onChange={handleChange} name="alterEgo" value={formData.alterEgo} /><br />
+                <b>Email : </b><input type="text" onChange={handleChange} name="email" value={formData.email} /><br />
                 <button className="btn" onClick={handleSubmit} disabled={updateIndex}>ADD</button>
                 <button className="btn" onClick={updateClick} disabled={!updateIndex}>UPDATE</button>
                 <button className="btn" onClick={handleCancel}>Cancel</button>
